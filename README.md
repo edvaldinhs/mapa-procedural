@@ -1,6 +1,6 @@
 <p id="title" align="center">
   <a href="#title">
-    <img width="80" height="80" src="https://i.imgur.com/Zt5S4qh.png" height="128">
+    <img width="85" height="85" src="https://i.imgur.com/Zt5S4qh.png" height="128">
     <h1 align="center">Mapa Procedural</h1>
   </a>
 </p>
@@ -52,7 +52,7 @@ Rode o programa
 
 ## 💻&nbsp; Projeto
 
-Um mapa procedural feito em c++ como avaliação de ITP no curso de Bacharelado da Computação.
+Um mapa procedural feito em c++ como avaliação de ITP no curso de Bacharelado em Ciência da Computação.
 
 <br>
 
