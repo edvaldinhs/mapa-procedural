@@ -1,10 +1,11 @@
 #include "cor.h"
 #include "paleta.h"
+#include "imagem.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 
-void criarImagem(Paleta imgPaleta, int comprimento, int altura) {
+void Imagem::criarImagem(Paleta imgPaleta, Imagem img) {
     std::ofstream file("mapa.ppm");
     if (!file.is_open()) {
         std::cout << "Erro de abertura" << std::endl;
@@ -15,7 +16,7 @@ void criarImagem(Paleta imgPaleta, int comprimento, int altura) {
     file << "255\n";
     for (int i = 0; i < altura; i++) {
         for (int j = 0; j < comprimento; j++) {
-            file << imgPaleta.getCor(2).r;
+            file << imgPaleta.getCor(5).r << " " << imgPaleta.getCor(5).g << " " << imgPaleta.getCor(5).b;
             if (j != comprimento - 1) {
                 file << " ";
             }
@@ -29,6 +30,7 @@ void criarImagem(Paleta imgPaleta, int comprimento, int altura) {
 
 int main() {
     Paleta paleta("../paleta.ppm");
-    criarImagem(paleta, 4, 7);
+    Imagem img(4, 7);
+    img.criarImagem(paleta, img);
     return 0;
 }
