@@ -1,8 +1,7 @@
+#ifndef PALETA_H
+#define PALETA_H
 #include <string>
 #include <fstream>
-#include <vector>
-#include <sstream>
-
 
 struct Cor {
     int r, g, b;
@@ -81,3 +80,4 @@ class Paleta {
         file.close();
     }
 };
+#endif
