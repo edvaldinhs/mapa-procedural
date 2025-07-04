@@ -1,6 +1,6 @@
 #ifndef COR_H
 #define COR_H
-
+#include <string>
 struct Cor {
     int r, g, b;
 
@@ -9,6 +9,9 @@ struct Cor {
         //compara cada valor r, g e b de uma cor com outra
         //Cor a; Cor b; a == b
         return r == outra.r && g == outra.g && b == outra.b;
+    }
+    std::string toString() {
+        return (r + " " + g + ' ' + b);
     }
 };
 
