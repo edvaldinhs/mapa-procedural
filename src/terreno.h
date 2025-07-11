@@ -1,5 +1,6 @@
 #ifndef TERRENO_H
 #define TERRENO_H
+#include <string>
 struct Terreno {
     int lado;
     int **matrizAltitudes;
@@ -15,11 +16,14 @@ struct Terreno {
         lado = ladoTemp + 1;
         matrizAltitudes = altitudeDefault(n);
     }
+
+    int **diamond(int n, double rugosidade);
+    int **square(int n, double rugosidade);
     int **diamondSquare(int n, double rugosidade);
     int getAltitude(int linha, int coluna);
     int getLinhas();
     int getColunas();
-    void altitudes();
-    void readAltitudes();
+    void writeAltitudes(std::string arquivo);
+    void readAltitudes(std::string arquivo);
 };
 #endif
