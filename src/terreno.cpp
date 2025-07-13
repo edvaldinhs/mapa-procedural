@@ -54,43 +54,94 @@ void Terreno::writeAltitudes(std::string arquivo) {
     return;
 }
 
-void Terreno::readAltitudes(std::string arquivo) {
+// void Terreno::readAltitudes(std::string arquivo) {
     
+//     std::ifstream file(arquivo);
+//     if (!file.is_open()) {
+//             std::cout << "Erro de abertura" << std::endl;
+//             return;
+//         }
+//     // favor não inserir n maior que 9
+//     std::string size;
+//     getline(file, size);
+//     size = size [0];
+//     lado = stoi(size);
+//     delete[] matrizAltitudes;
+//     matrizAltitudes = new int *[lado];
+//     for (int i = 0; i < lado; i++) {
+//         matrizAltitudes [i] = new int [lado];
+//     }
+    
+//     int i = 0;
+//     std::string linha;
+//     while (std::getline(file, linha) && i < lado) {
+//         for (int j = 0; j < linha.size(); j++) {
+//             std::string valor;
+//             int k = 0;
+//             if (linha [j] != ' ') {
+//                 valor = linha [j];
+                
+//                 matrizAltitudes [i] [k] = stoi(valor);
+//                 std::cout << matrizAltitudes [i] [k] << "s" << "\n";
+//                 k++;
+//             }
+//         }
+//         i++;
+//     }
+//     file.close();
+//     return;
+// }
+
+void Terreno::readAltitudes(std::string arquivo) {
     std::ifstream file(arquivo);
     if (!file.is_open()) {
-            std::cout << "Erro de abertura" << std::endl;
-            return;
-        }
-    // favor não inserir n maior que 9
-    std::string size;
-    getline(file, size);
-    size = size [0];
-    lado = stoi(size);
-    delete[] matrizAltitudes;
+        std::cout << "Erro de abertura" << std::endl;
+        return;
+    }
+
+    std::string sizeLinha;
+    std::getline(file, sizeLinha);
+    int espaco = sizeLinha.find(' ');
+    lado = std::stoi(sizeLinha.substr(0, espaco));
+
+    if (matrizAltitudes) {
+        for (int i = 0; i < lado; ++i)
+            delete[] matrizAltitudes[i];
+        delete[] matrizAltitudes;
+    }
+
     matrizAltitudes = new int *[lado];
     for (int i = 0; i < lado; i++) {
-        matrizAltitudes [i] = new int [lado];
+        matrizAltitudes[i] = new int[lado];
     }
-    
+
     int i = 0;
     std::string linha;
     while (std::getline(file, linha) && i < lado) {
-        for (int j = 0; j < linha.size(); j++) {
-            std::string valor;
-            int k = 0;
-            if (linha [j] != ' ') {
-                valor = linha [j];
-                
-                matrizAltitudes [i] [k] = stoi(valor);
-                std::cout << matrizAltitudes [i] [k] << "s" << "\n";
-                k++;
+        int j = 0;
+        std::string num = "";
+
+        for (char c : linha) {
+            if (c == ' ') {
+                if (num != "") {
+                    matrizAltitudes[i][j++] = std::stoi(num);
+                    num = "";
+                }
+            } else {
+                num += c;
             }
         }
+
+        if (num != "" && j < lado) {
+            matrizAltitudes[i][j++] = std::stoi(num);
+        }
+
         i++;
     }
+
     file.close();
-    return;
 }
+
 
 int main() {
     Terreno malha (2);
