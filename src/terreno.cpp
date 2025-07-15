@@ -28,9 +28,29 @@ int Terreno::getAltitude(int linha, int coluna) {
     return matrizAltitudes [linha] [coluna];
 }
 
-// int **Terreno::diamondSquare(int n, double rugosidade) {
+void Terreno::diamond(int lado) {
+    int meioLado = lado / 2;
+    for (int i = meioLado; i < lado; i += meioLado) {
+        for (int j = meioLado; j < lado; j += meioLado) {
+            // matrizAltitudes [] [] =
+        }
+    }
+    return;
+}
 
-// }
+void Terreno::diamondSquare(int n, double rugosidade) {
+    int meioLado = lado / 2;
+    if (meioLado < 1) {
+        return;
+    }
+    // etapa Diamond
+    for (int i = meioLado; i < lado - 1; i += lado) {
+        for (int j = meioLado; j < lado - 1; j += lado) {
+            diamond(meioLado);
+        }
+    }
+
+}
 
 void Terreno::writeAltitudes(std::string arquivo) {
     std::ofstream file(arquivo);
@@ -54,43 +74,6 @@ void Terreno::writeAltitudes(std::string arquivo) {
     return;
 }
 
-// void Terreno::readAltitudes(std::string arquivo) {
-    
-//     std::ifstream file(arquivo);
-//     if (!file.is_open()) {
-//             std::cout << "Erro de abertura" << std::endl;
-//             return;
-//         }
-//     // favor não inserir n maior que 9
-//     std::string size;
-//     getline(file, size);
-//     size = size [0];
-//     lado = stoi(size);
-//     delete[] matrizAltitudes;
-//     matrizAltitudes = new int *[lado];
-//     for (int i = 0; i < lado; i++) {
-//         matrizAltitudes [i] = new int [lado];
-//     }
-    
-//     int i = 0;
-//     std::string linha;
-//     while (std::getline(file, linha) && i < lado) {
-//         for (int j = 0; j < linha.size(); j++) {
-//             std::string valor;
-//             int k = 0;
-//             if (linha [j] != ' ') {
-//                 valor = linha [j];
-                
-//                 matrizAltitudes [i] [k] = stoi(valor);
-//                 std::cout << matrizAltitudes [i] [k] << "s" << "\n";
-//                 k++;
-//             }
-//         }
-//         i++;
-//     }
-//     file.close();
-//     return;
-// }
 
 void Terreno::readAltitudes(std::string arquivo) {
     std::ifstream file(arquivo);
@@ -146,6 +129,7 @@ void Terreno::readAltitudes(std::string arquivo) {
 int main() {
     Terreno malha (2);
     malha.readAltitudes("mapa.txt");
+    malha.diamond(2);
     for (int i = 0; i < malha.getLinhas(); i++) {
         for (int j = 0; j < malha.getColunas(); j++) {
             std::cout << malha.matrizAltitudes [i] [j] << " ";
