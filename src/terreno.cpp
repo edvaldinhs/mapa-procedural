@@ -28,28 +28,28 @@ int Terreno::getAltitude(int linha, int coluna) {
     return matrizAltitudes [linha] [coluna];
 }
 
-void Terreno::diamond(int lado) {
-    int meioLado = lado / 2;
-    for (int i = meioLado; i < lado; i += meioLado) {
-        for (int j = meioLado; j < lado; j += meioLado) {
-            // matrizAltitudes [] [] =
-        }
-    }
+void Terreno::diamond(int x, int y, int size) {
+    int media = (matrizAltitudes [x] [y] + matrizAltitudes [x + size] [y] + matrizAltitudes [x] [y + size] + matrizAltitudes [x + size] [y + size]) / 4;
+    matrizAltitudes [x + (size / 2)] [y + (size / 2)] = media;
     return;
 }
 
-void Terreno::diamondSquare(int n, double rugosidade) {
-    int meioLado = lado / 2;
-    if (meioLado < 1) {
-        return;
-    }
-    // etapa Diamond
-    for (int i = meioLado; i < lado - 1; i += lado) {
-        for (int j = meioLado; j < lado - 1; j += lado) {
-            diamond(meioLado);
+void Terreno::diamondSquare(int size, double rugosidade) {
+    /* aqui a gente tem que gerar aleatoriamente os valores
+    dos 4 cantos da matriz */
+    size = lado - 1;
+    while (size > 1) {
+        // etapa diamond
+        for (int i = 0; i < lado - 1; i += size) {
+            for (int j = 0; j < lado - 1; j += size) {
+                diamond(i, j, size);
+            }
         }
-    }
+        // etapa square
+        
 
+        size /= 2;
+    }
 }
 
 void Terreno::writeAltitudes(std::string arquivo) {
@@ -129,7 +129,7 @@ void Terreno::readAltitudes(std::string arquivo) {
 int main() {
     Terreno malha (2);
     malha.readAltitudes("mapa.txt");
-    malha.diamond(2);
+    malha.diamondSquare(1, 0.5);
     for (int i = 0; i < malha.getLinhas(); i++) {
         for (int j = 0; j < malha.getColunas(); j++) {
             std::cout << malha.matrizAltitudes [i] [j] << " ";

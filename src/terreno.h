@@ -5,7 +5,7 @@ struct Terreno {
     int lado;
     int **matrizAltitudes;
     int **altitudeDefault(int n);
-    void diamond(int lado);
+    void diamond(int x, int y, int size);
     int **square(int n, double rugosidade);
 
     public:
