@@ -46,7 +46,7 @@ std::string selecionarPaleta(int &range) {
             break;
         default:
             std::cout << "Opção inválida. Usando paleta padrão: classica.\n";
-            paletaEscolhida = "classica";
+            paletaEscolhida = "Classica";
     }
 
     std::cout << "Você escolheu a paleta: " << paletaEscolhida << "\n";
