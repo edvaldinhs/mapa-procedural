@@ -7,7 +7,7 @@
 
 int main() {
     Paleta paleta("../src/paleta.txt");
-    Terreno malha(2);
+    Terreno malha(3);
     malha.diamondSquare(0.5);
     malha.writeAltitudes("mapaPreenchido.txt");
     Imagem mapa(malha.lado, malha.lado);

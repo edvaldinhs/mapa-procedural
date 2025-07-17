@@ -5,6 +5,18 @@
 #include <cstdlib>
 #include <ctime>
 
+//Destrutor de Terreno
+Terreno::~Terreno() {
+    if (matrizAltitudes) {
+        for (int i = 0; i < lado; ++i) {
+            delete[] matrizAltitudes[i];
+        }
+        delete[] matrizAltitudes;
+        matrizAltitudes = nullptr;
+    }
+}
+
+
 int Terreno::getLinhas() {
     return lado;
 }

@@ -20,7 +20,7 @@ class Imagem {
     Cor getPixel(int comp, int alt);
     void setPixel(int comp, int alt, Cor doPixel);
     void criarImagem(Paleta imgPaleta, std::string arquivo);
-
+    ~Imagem();
 };
 
 #endif

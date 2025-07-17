@@ -5,6 +5,17 @@
 #include <fstream>
 #include <string>
 
+
+Imagem::~Imagem() {
+    if (pixels) {
+        for (int i = 0; i < comprimento; ++i) {
+            delete[] pixels[i];
+        }
+        delete[] pixels;
+        pixels = nullptr;
+    }
+}
+
 int Imagem::getComp() {
     return comprimento;
 }

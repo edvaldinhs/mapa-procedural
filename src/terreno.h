@@ -24,6 +24,7 @@ struct Terreno {
     int getColunas();
     void writeAltitudes(std::string arquivo);
     void readAltitudes(std::string arquivo);
+    ~Terreno();
 };
 
 #endif
