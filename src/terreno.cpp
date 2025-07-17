@@ -30,51 +30,61 @@ int Terreno::getAltitude(int linha, int coluna) {
     return matrizAltitudes [linha] [coluna];
 }
 
-void Terreno::diamond(int x, int y, int size) {
+void Terreno::diamond(int x, int y, int size, int randmax) {
+    int randmin = -randmax;
+    int r = (rand() % (randmax - randmin + 1)) + randmin;
     int media = (matrizAltitudes [x] [y] + matrizAltitudes [x + size] [y] + matrizAltitudes [x] [y + size] + matrizAltitudes [x + size] [y + size]) / 4;
-    matrizAltitudes [x + (size / 2)] [y + (size / 2)] = media;
+    matrizAltitudes [x + (size / 2)] [y + (size / 2)] = media + r;
     return;
 }
 
-void Terreno::square(int x, int y, int size) {
+void Terreno::square(int x, int y, int size, int randmax) {
     int media = 0;
     int meioSize = size / 2;
+    int randmin = -randmax;
+    int r = (rand() % (randmax - randmin + 1)) + randmin;
     if (x == 0) {
         media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize]) / 3;
-        matrizAltitudes [x] [y] = media;
+        matrizAltitudes [x] [y] = media + r;
         return;
     }
     else if (y == 0) {
         media = (matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 3;
-        matrizAltitudes [x] [y] = media;
+        matrizAltitudes [x] [y] = media + r;
         return;
     }
     else if (x == lado - 1) {
         media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 3;
-        matrizAltitudes [x] [y] = media;
+        matrizAltitudes [x] [y] = media + r;
         return;
     }
     else if (y == lado - 1) {
         media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x - meioSize] [y]) / 3;
-        matrizAltitudes [x] [y] = media;
+        matrizAltitudes [x] [y] = media + r;
         return;
     }
     else {
         media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 4;
-        matrizAltitudes [x] [y] = media;
+        matrizAltitudes [x] [y] = media + r;
         return;
     }
 }
 
 void Terreno::diamondSquare(double rugosidade) {
-    /* aqui a gente tem que gerar aleatoriamente os valores
-    dos 4 cantos da matriz */
+    srand(time(0));
+    int min = 0;
+    int max = 100;
+    matrizAltitudes [0] [0] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes [0] [lado - 1] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes [lado - 1] [0] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes [lado - 1] [lado - 1] = (rand() % (max - min + 1)) + min;
     int size = lado - 1;
+    int randmax = 10;
     while (size > 1) {
         // etapa diamond
         for (int i = 0; i < lado - 1; i += size) {
             for (int j = 0; j < lado - 1; j += size) {
-                diamond(i, j, size);
+                diamond(i, j, size, randmax);
             }
         }
         // etapa square
@@ -82,17 +92,17 @@ void Terreno::diamondSquare(double rugosidade) {
         for (int i = 0; i < lado; i += size / 2) {
             if (count % 2 == 0) {
                 for (int j = (size / 2); j < lado; j += size) {
-                square(j, i, size);    
+                square(j, i, size, randmax);    
                 }
             }
             else {
                 for (int j = 0; j < lado; j += size) {
-                square(j, i, size);
+                square(j, i, size, randmax);
                 }
             }
             count++;
         }
-
+        randmax *= rugosidade;
         size /= 2;
     }
 }
