@@ -12,7 +12,7 @@ Terreno::Terreno(int n) {
             ladoTemp *= 2;
         }
         lado = ladoTemp + 1;
-        matrizAltitudes = altitudeDefault(n);
+        matrizAltitudes = altitudeDefault();
     }
 
 //Destrutor de Terreno
@@ -35,7 +35,7 @@ int Terreno::getColunas() {
     return lado;
 }
 
-int **Terreno::altitudeDefault(int n) {
+int **Terreno::altitudeDefault() {
     int **matrizAltitudes = new int *[lado];
     for (int i = 0; i < lado; i++) {
         matrizAltitudes [i] = new int [lado];
