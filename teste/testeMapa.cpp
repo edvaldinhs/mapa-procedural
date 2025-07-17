@@ -6,9 +6,9 @@
 // para compilar: g++ ../paleta/paleta.cpp ../paleta/imagem.cpp ../paleta/terreno.cpp testeMapa.cpp -o testeMapa.out
 
 int main() {
-    Paleta paleta("../paletas/paleta.txt");
+    Paleta paleta("../paletas/Classica.txt");
     Terreno malha(9);
-    malha.diamondSquare(0.6);
+    malha.diamondSquare(0.6, 50);
     malha.writeAltitudes("mapaPreenchido.txt");
     Imagem mapa(malha.getLinhas(), malha.getLinhas());
     for (int i = 0; i < malha.getColunas(); i++) {
