@@ -16,7 +16,8 @@ int main() {
             mapa.setPixel(i, j, paleta.getCor(malha.getMatriz() [i] [j]));
         }
     }
-    
+
+		mapa.sombrear(malha, 0.6);
     mapa.criarImagem(paleta, "mapa.ppm");
     return 0;
 }

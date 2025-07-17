@@ -1,6 +1,7 @@
 #ifndef IMAGEM_H
 #define IMAGEM_H
 #include "paleta.h"
+#include "terreno.h"
 #include <vector>
 
 class Imagem {
@@ -11,6 +12,7 @@ class Imagem {
     public:
     Imagem(int comp, int alt);
     void escurecer(double fator);
+		void sombrear(Terreno& terreno, double fator);
     int getComp();
     int getAlt();
     Cor **criaPixel();

@@ -90,6 +90,33 @@ void Imagem::escurecer(double fator) {
     }
 }
 
+
+void Imagem::sombrear(Terreno& terreno, double fator){
+	if (fator < 0.0) fator = 0.0;
+    if (fator > 1.0) fator = 1.0;
+
+    for (int i = 0; i < comprimento; ++i) {
+        for (int j = 0; j < altura; ++j) {
+					if(i+1 < comprimento && j+1 < altura){
+						int altAtual = terreno.getAltitude(i,j);
+						int altDiag = terreno.getAltitude(i+1,j+1);
+						if(altDiag < altAtual){
+							Cor &pixel = pixels[i][j];
+
+							pixel.r = (int)(pixel.r * fator);
+							pixel.g = (int)(pixel.g * fator);
+							pixel.b = (int)(pixel.b * fator);
+
+							if (pixel.r < 0) pixel.r = 0; if (pixel.r > 255) pixel.r = 255;
+							if (pixel.g < 0) pixel.g = 0; if (pixel.g > 255) pixel.g = 255;
+							if (pixel.b < 0) pixel.b = 0; if (pixel.b > 255) pixel.b = 255;
+						}
+        }
+			}
+    }
+}
+
+
 // int main() {
 //     Paleta paleta("paleta.txt");
 //     Imagem fotoDoc(6, 3);
@@ -104,7 +131,7 @@ void Imagem::escurecer(double fator) {
 //             else {
 //                 fotoDoc.setPixel(i, j, paleta.getCor(9));
 //             }
-                    
+
 //         }
 //     }
 //     // fotoDoc.setPixel(0, 0, paleta.getCor(7));
