@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 int Terreno::getLinhas() {
     return lado;
@@ -34,10 +36,40 @@ void Terreno::diamond(int x, int y, int size) {
     return;
 }
 
-void Terreno::diamondSquare(int size, double rugosidade) {
+void Terreno::square(int x, int y, int size) {
+    int media = 0;
+    int meioSize = size / 2;
+    if (x == 0) {
+        media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize]) / 3;
+        matrizAltitudes [x] [y] = media;
+        return;
+    }
+    else if (y == 0) {
+        media = (matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 3;
+        matrizAltitudes [x] [y] = media;
+        return;
+    }
+    else if (x == lado - 1) {
+        media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 3;
+        matrizAltitudes [x] [y] = media;
+        return;
+    }
+    else if (y == lado - 1) {
+        media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x - meioSize] [y]) / 3;
+        matrizAltitudes [x] [y] = media;
+        return;
+    }
+    else {
+        media = (matrizAltitudes [x] [y - meioSize] + matrizAltitudes [x + meioSize] [y] + matrizAltitudes [x] [y + meioSize] + matrizAltitudes [x - meioSize] [y]) / 4;
+        matrizAltitudes [x] [y] = media;
+        return;
+    }
+}
+
+void Terreno::diamondSquare(double rugosidade) {
     /* aqui a gente tem que gerar aleatoriamente os valores
     dos 4 cantos da matriz */
-    size = lado - 1;
+    int size = lado - 1;
     while (size > 1) {
         // etapa diamond
         for (int i = 0; i < lado - 1; i += size) {
@@ -46,7 +78,20 @@ void Terreno::diamondSquare(int size, double rugosidade) {
             }
         }
         // etapa square
-        
+        int count = 0;
+        for (int i = 0; i < lado; i += size / 2) {
+            if (count % 2 == 0) {
+                for (int j = (size / 2); j < lado; j += size) {
+                square(j, i, size);    
+                }
+            }
+            else {
+                for (int j = 0; j < lado; j += size) {
+                square(j, i, size);
+                }
+            }
+            count++;
+        }
 
         size /= 2;
     }
@@ -126,14 +171,14 @@ void Terreno::readAltitudes(std::string arquivo) {
 }
 
 
-int main() {
-    Terreno malha (2);
-    malha.readAltitudes("mapa.txt");
-    malha.diamondSquare(1, 0.5);
-    for (int i = 0; i < malha.getLinhas(); i++) {
-        for (int j = 0; j < malha.getColunas(); j++) {
-            std::cout << malha.matrizAltitudes [i] [j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
+// int main() {
+//     Terreno malha (4);
+//     malha.readAltitudes("mapa.txt");
+//     malha.diamondSquare(0.5);
+//     for (int i = 0; i < malha.getLinhas(); i++) {
+//         for (int j = 0; j < malha.getColunas(); j++) {
+//             std::cout << malha.matrizAltitudes [i] [j] << " ";
+//         }
+//         std::cout << std::endl;
+//     }
+// }

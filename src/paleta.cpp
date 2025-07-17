@@ -16,6 +16,7 @@ Paleta::Paleta(int quantidade, Cor cores[], int valores[]) {
 Cor Paleta::getCor(int valores){
         return cores[valores];
     }
+
     void Paleta::lerArquivo(std::string arquivoTexto) {
         std::ifstream file(arquivoTexto);
         if (!file.is_open()) {

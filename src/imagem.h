@@ -19,7 +19,8 @@ class Imagem {
     Cor **criaPixel();
     Cor getPixel(int comp, int alt);
     void setPixel(int comp, int alt, Cor doPixel);
-    void criarImagem(Paleta imgPaleta, Imagem img);
+    void criarImagem(Paleta imgPaleta, std::string arquivo);
 
 };
+
 #endif
