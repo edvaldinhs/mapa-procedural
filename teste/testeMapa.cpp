@@ -10,10 +10,10 @@ int main() {
     Terreno malha(9);
     malha.diamondSquare(0.6);
     malha.writeAltitudes("mapaPreenchido.txt");
-    Imagem mapa(malha.lado, malha.lado);
-    for (int i = 0; i < malha.lado; i++) {
-        for (int j = 0; j < malha.lado; j++) {
-            mapa.setPixel(i, j, paleta.getCor(malha.matrizAltitudes [i] [j]));
+    Imagem mapa(malha.getLinhas(), malha.getLinhas());
+    for (int i = 0; i < malha.getColunas(); i++) {
+        for (int j = 0; j < malha.getColunas(); j++) {
+            mapa.setPixel(i, j, paleta.getCor(malha.getMatriz() [i] [j]));
         }
     }
     

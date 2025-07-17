@@ -34,12 +34,13 @@ class Terreno {
     Terreno(int n);
 
     /** Gera proceduralmente as altitudes de um terreno
-     * @param rugosidade Constante que altera o valor máximo da variação aleatória
+     * @param rugosidade Constante que altera o valor máximo da variação aleat
      */
-    void diamondSquare(int n, double rugosidade);
+    void diamondSquare(double rugosidade);
     int getAltitude(int linha, int coluna);
     int getLinhas();
     int getColunas();
+    int** getMatriz();
     void writeAltitudes(std::string arquivo);
     void readAltitudes(std::string arquivo);
     
