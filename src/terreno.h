@@ -29,7 +29,6 @@ class Terreno {
     public:
     /**Construtor parametrizado para a classe Terreno.
      * @param n Expoente que será aplicado a 2 para gerar o tamanho do lado
-     * @return Terreno com todos os valores em 0 (Default)
      */
     Terreno(int n);
 
@@ -37,13 +36,42 @@ class Terreno {
      * @param rugosidade Constante que altera o valor máximo da variação aleat
      */
     void diamondSquare(double rugosidade);
+
+    /** Acessa o valor da altitude em uma determinada coordenada do terreno
+     * @param linha Linha da coordenada
+     * @param coluna Coluna da coordenada
+     * @return Valor da altitude na coordenada (linha, coluna) do terreno.
+     */
     int getAltitude(int linha, int coluna);
+
+    /** Acessa o número de linhas do terreno
+     * @return Valor do lado do terreno
+     */
     int getLinhas();
+    
+    /** Acessa o número de colunas do terreno
+     * @return Valor do lado do terreno
+     */
     int getColunas();
+
+    /** Acessa a matriz de altitudes do terreno
+     * @return Matriz de altitudes do terreno
+     */
     int** getMatriz();
+
+    /** Escreve as dimensões de um terreno e a sua 
+     * matriz de altitudes em um arquivo 
+     * @param arquivo Nome do arquivo a ser gravado 
+     * */
     void writeAltitudes(std::string arquivo);
+
+    /** Lê as dimensões e a matriz de altitudes de um terreno
+     *  de um arquivo e aplica em um objeto da classe Terreno
+     * @param Nome do arquivo a ser lido
+     * */
     void readAltitudes(std::string arquivo);
     
+    /** Destrutor para a classe Terreno */
     ~Terreno();
 };
 
