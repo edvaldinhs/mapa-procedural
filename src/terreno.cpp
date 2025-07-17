@@ -96,11 +96,11 @@ void Terreno::square(int x, int y, int size, int randmax) {
     }
 }
 
-void Terreno::diamondSquare(double rugosidade) {
+void Terreno::diamondSquare(double rugosidade, int maxRange) {
     srand(time(0));
     double randmax = 50.0;
     int min = 0;
-    int max = 50;
+    int max = maxRange;
 
     matrizAltitudes[0][0] = (rand() % (max - min + 1)) + min;
     matrizAltitudes[0][lado - 1] = (rand() % (max - min + 1)) + min;

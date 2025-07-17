@@ -30,6 +30,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🧑🏻‍💻&nbsp; Iniciando o Projeto
 
+**!!Atenção!!** - Para inicializar o projeto será necessário o compilador g++.
+
 Clone o projeto e acesse a pasta.
 
 ```bash
@@ -37,7 +39,33 @@ $ git clone https://github.com/edvaldinhs/mapa-procedural.git
 $ cd mapa-procedural
 ```
 
-Compile o programa caso necessário.
+O projeto pode ser inicializado de duas formas: **Diretamente** por um script do projeto, ou **Manualmente**, compilando e executando o projeto.
+
+<br>
+
+### Iniciar Diretamente:
+
+#### Windows:
+
+Executar o runWin.bat
+```bash
+start runWin.bat
+```
+ou clicar 2 vezes...
+
+<br>
+
+#### Linux:
+Executar o runLinux.sh
+```bash
+./runLinux.sh
+```
+
+<br>
+
+### Iniciar Manualmente :
+
+Compile o programa.
 ```bash
 g++ main.cpp
 ```
@@ -46,6 +74,12 @@ Rode o programa
 
 ```bash
 ./a.out
+```
+
+Ou se estiver no **Windows**:
+
+```bash
+start a.exe
 ```
 
 <br>

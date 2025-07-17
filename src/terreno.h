@@ -33,9 +33,10 @@ class Terreno {
     Terreno(int n);
 
     /** Gera proceduralmente as altitudes de um terreno
-     * @param rugosidade Constante que altera o valor máximo da variação aleat
+     * @param rugosidade Constante que altera o valor máximo da variação aleatória
+     * @param maxRange valor máximo das altitudes geradas
      */
-    void diamondSquare(double rugosidade);
+    void diamondSquare(double rugosidade, int maxRange);
 
     /** Acessa o valor da altitude em uma determinada coordenada do terreno
      * @param linha Linha da coordenada

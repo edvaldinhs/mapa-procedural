@@ -115,29 +115,3 @@ void Imagem::sombrear(Terreno& terreno, double fator){
 			}
     }
 }
-
-
-// int main() {
-//     Paleta paleta("paleta.txt");
-//     Imagem fotoDoc(6, 3);
-//     for (int i = 0; i < fotoDoc.getComp(); i++) {
-//         for (int j = 0; j < fotoDoc.getAlt(); j++) {
-//             if (j == 0) {
-//                 fotoDoc.setPixel(i, j, paleta.getCor(8));
-//             }
-//             else if (j == 2) {
-//                 fotoDoc.setPixel(i, j, paleta.getCor(7));
-//             }
-//             else {
-//                 fotoDoc.setPixel(i, j, paleta.getCor(9));
-//             }
-
-//         }
-//     }
-//     // fotoDoc.setPixel(0, 0, paleta.getCor(7));
-//     fotoDoc.criarImagem(paleta, "flag.ppm");
-//     std::cout << fotoDoc.getPixel(1, 0).r << "\n";
-//     std::cout << fotoDoc.getPixel(1, 0).g << "\n";
-//     std::cout << fotoDoc.getPixel(1, 0).b << std::endl;
-//     return 0;
-// }

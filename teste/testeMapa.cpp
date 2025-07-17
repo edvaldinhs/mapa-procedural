@@ -3,10 +3,10 @@
 #include "../src/paleta.h"
 #include "../src/terreno.h"
 
-// para compilar: g++ ../src/paleta.cpp ../src/imagem.cpp ../src/terreno.cpp testeMapa.cpp -o testeMapa.out
+// para compilar: g++ ../paleta/paleta.cpp ../paleta/imagem.cpp ../paleta/terreno.cpp testeMapa.cpp -o testeMapa.out
 
 int main() {
-    Paleta paleta("../src/paleta.txt");
+    Paleta paleta("../paletas/paleta.txt");
     Terreno malha(9);
     malha.diamondSquare(0.6);
     malha.writeAltitudes("mapaPreenchido.txt");
