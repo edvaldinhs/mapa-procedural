@@ -2,23 +2,7 @@
 #define TERRENO_H
 #include <string>
 
-class terreno
-{
-private:
-    /* data */
-public:
-    terreno(/* args */);
-    ~terreno();
-};
-
-terreno::terreno(/* args */)
-{
-}
-
-terreno::~terreno()
-{
-}
- Terreno {
+class Terreno {
     int lado;
     int **matrizAltitudes;
     /** Aplica o valor padrão 0 a todas as células de um terreno
@@ -52,7 +36,7 @@ terreno::~terreno()
     /** Gera proceduralmente as altitudes de um terreno
      * @param rugosidade Constante que altera o valor máximo da variação aleatória
      */
-    void diamondSquare(double rugosidade);
+    void diamondSquare(int n, double rugosidade);
     int getAltitude(int linha, int coluna);
     int getLinhas();
     int getColunas();
