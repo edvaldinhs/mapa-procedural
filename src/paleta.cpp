@@ -13,9 +13,24 @@ Paleta::Paleta(int quantidade, Cor cores[], int valores[]) {
         }
     }
 
-Cor Paleta::getCor(int valores){
+Cor Paleta::getCorIndice(int valores){
         return cores[valores];
     }
+
+Cor Paleta::getCor(int valor) {
+    int melhorIndice = -1;
+    for (int i = 0; i < quantidade; i++) {
+        if (valores[i] <= valor) {
+            if (melhorIndice == -1 || valores[i] > valores[melhorIndice]) {
+                melhorIndice = i;
+            }
+        }
+    }
+    if (melhorIndice != -1)
+        return cores[melhorIndice];
+    else
+        return Cor{0,0,0};
+}
 
     void Paleta::lerArquivo(std::string arquivoTexto) {
         std::ifstream file(arquivoTexto);

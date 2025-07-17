@@ -9,11 +9,8 @@ class Imagem {
     Cor **pixels;
 
     public:
-    Imagem(int comp, int alt) {
-        comprimento = comp;
-        altura = alt;
-        pixels = criaPixel();
-    }
+    Imagem(int comp, int alt);
+    void escurecer(double fator);
     int getComp();
     int getAlt();
     Cor **criaPixel();

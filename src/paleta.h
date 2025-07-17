@@ -12,6 +12,7 @@ class Paleta {
     public:
     Paleta(std::string arquivo);
     Paleta(int quantidade, Cor cores[], int valores[]);
+    Cor getCorIndice(int valores);
     Cor getCor(int valores);
     void lerArquivo(std::string arquivoTexto);
 };

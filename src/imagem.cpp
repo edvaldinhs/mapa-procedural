@@ -5,7 +5,14 @@
 #include <fstream>
 #include <string>
 
+//Construtor de Imagem.
+Imagem::Imagem(int comp, int alt) {
+        comprimento = comp;
+        altura = alt;
+        pixels = criaPixel();
+    }
 
+//Destrutor de Imagem.
 Imagem::~Imagem() {
     if (pixels) {
         for (int i = 0; i < comprimento; ++i) {
@@ -61,6 +68,26 @@ void Imagem::criarImagem(Paleta imgPaleta, std::string arquivo) {
         }
     }
     file.close();
+}
+
+void Imagem::escurecer(double fator) {
+
+    if (fator < 0.0) fator = 0.0;
+    if (fator > 1.0) fator = 1.0;
+
+    for (int i = 0; i < comprimento; ++i) {
+        for (int j = 0; j < altura; ++j) {
+            Cor &pixel = pixels[i][j];
+
+            pixel.r = (int)(pixel.r * fator);
+            pixel.g = (int)(pixel.g * fator);
+            pixel.b = (int)(pixel.b * fator);
+
+            if (pixel.r < 0) pixel.r = 0; if (pixel.r > 255) pixel.r = 255;
+            if (pixel.g < 0) pixel.g = 0; if (pixel.g > 255) pixel.g = 255;
+            if (pixel.b < 0) pixel.b = 0; if (pixel.b > 255) pixel.b = 255;
+        }
+    }
 }
 
 // int main() {

@@ -5,6 +5,16 @@
 #include <cstdlib>
 #include <ctime>
 
+//Construtor de Terreno
+Terreno::Terreno(int n) {
+        int ladoTemp = 2;
+        for (int i = 1; i < n; i++) {
+            ladoTemp *= 2;
+        }
+        lado = ladoTemp + 1;
+        matrizAltitudes = altitudeDefault(n);
+    }
+
 //Destrutor de Terreno
 Terreno::~Terreno() {
     if (matrizAltitudes) {
@@ -84,37 +94,42 @@ void Terreno::square(int x, int y, int size, int randmax) {
 
 void Terreno::diamondSquare(double rugosidade) {
     srand(time(0));
+    double randmax = 50.0;
     int min = 0;
-    int max = 100;
-    matrizAltitudes [0] [0] = (rand() % (max - min + 1)) + min;
-    matrizAltitudes [0] [lado - 1] = (rand() % (max - min + 1)) + min;
-    matrizAltitudes [lado - 1] [0] = (rand() % (max - min + 1)) + min;
-    matrizAltitudes [lado - 1] [lado - 1] = (rand() % (max - min + 1)) + min;
+    int max = 50;
+
+    matrizAltitudes[0][0] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes[0][lado - 1] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes[lado - 1][0] = (rand() % (max - min + 1)) + min;
+    matrizAltitudes[lado - 1][lado - 1] = (rand() % (max - min + 1)) + min;
+
     int size = lado - 1;
-    int randmax = 10;
+
     while (size > 1) {
         // etapa diamond
         for (int i = 0; i < lado - 1; i += size) {
             for (int j = 0; j < lado - 1; j += size) {
-                diamond(i, j, size, randmax);
+                diamond(i, j, size, (int)randmax);
             }
         }
+
         // etapa square
         int count = 0;
         for (int i = 0; i < lado; i += size / 2) {
             if (count % 2 == 0) {
                 for (int j = (size / 2); j < lado; j += size) {
-                square(j, i, size, randmax);    
+                    square(j, i, size, (int)randmax);
                 }
-            }
-            else {
+            } else {
                 for (int j = 0; j < lado; j += size) {
-                square(j, i, size, randmax);
+                    square(j, i, size, (int)randmax);
                 }
             }
             count++;
         }
+
         randmax *= rugosidade;
+        // if (randmax < 0.5) randmax = 0.5;
         size /= 2;
     }
 }

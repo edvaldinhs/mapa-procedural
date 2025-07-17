@@ -7,8 +7,8 @@
 
 int main() {
     Paleta paleta("../src/paleta.txt");
-    Terreno malha(3);
-    malha.diamondSquare(0.5);
+    Terreno malha(9);
+    malha.diamondSquare(0.6);
     malha.writeAltitudes("mapaPreenchido.txt");
     Imagem mapa(malha.lado, malha.lado);
     for (int i = 0; i < malha.lado; i++) {
@@ -16,6 +16,7 @@ int main() {
             mapa.setPixel(i, j, paleta.getCor(malha.matrizAltitudes [i] [j]));
         }
     }
+    
     mapa.criarImagem(paleta, "mapa.ppm");
     return 0;
 }

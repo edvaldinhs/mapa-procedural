@@ -1,6 +1,7 @@
 #ifndef TERRENO_H
 #define TERRENO_H
 #include <string>
+
 struct Terreno {
     int lado;
     int **matrizAltitudes;
@@ -9,14 +10,7 @@ struct Terreno {
     void square(int x, int y, int size, int randmax);
 
     public:
-    Terreno(int n) {
-        int ladoTemp = 2;
-        for (int i = 1; i < n; i++) {
-            ladoTemp *= 2;
-        }
-        lado = ladoTemp + 1;
-        matrizAltitudes = altitudeDefault(n);
-    }
+    Terreno(int n);
 
     void diamondSquare(double rugosidade);
     int getAltitude(int linha, int coluna);
