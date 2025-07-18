@@ -56,6 +56,12 @@ ou clicar 2 vezes...
 <br>
 
 #### Linux:
+
+Dar permissão de execução para o runLinux.sh (caso necessário)
+```bash
+chmod +x runLinux.sh
+```
+
 Executar o runLinux.sh
 ```bash
 ./runLinux.sh
