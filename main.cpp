@@ -55,12 +55,16 @@ std::string selecionarPaleta(int &range) {
 
 int main() {
     char continuar;
+    unsigned short ordem;
 
     do {
         int range = 0;
 
         Paleta paleta("./paletas/" + selecionarPaleta(range) + ".txt");
-        Terreno malha(9);
+        std::cout << "|| A imagem será quadrada com lados de tamanho 2ⁿ+1.";
+        std::cout << "\n|| Digite o valor para n: ";
+        std::cin >> ordem;
+        Terreno malha(ordem);
         malha.diamondSquare(0.6, range);
         malha.writeAltitudes("mapaPreenchido.txt");
         Imagem mapa(malha.getLinhas(), malha.getLinhas());
@@ -74,7 +78,7 @@ int main() {
         mapa.sombrear(malha, 0.6);
         mapa.criarImagem(paleta, "mapa.ppm");
 
-        std::cout << "--   Mapa Criado!   --\n";
+        std::cout << "\n--   Mapa Criado!   --\n";
         std::cout << "-- Verifique o ppm! --\n";
 
         std::cout << "Deseja criar outro mapa? (s/n): ";
